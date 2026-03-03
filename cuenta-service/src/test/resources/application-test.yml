@@ -1,0 +1,16 @@
+spring:
+  r2dbc:
+    url: r2dbc:h2:mem:///testdb;DB_CLOSE_DELAY=-1
+    username: sa
+    password:
+
+  flyway:
+    enabled: false
+
+  h2:
+    console:
+      enabled: true
+
+services:
+  cliente-service:
+    base-url: http://localhost:8089

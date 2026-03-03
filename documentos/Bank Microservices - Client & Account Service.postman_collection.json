@@ -1,0 +1,384 @@
+{
+  "info": {
+    "_postman_id": "76d1e06e-d873-45c7-9a1a-221331aaa541",
+    "name": "Bank Microservices - Client & Account Service",
+    "description": "Collection for CLIENT-SERVICE (8081) and ACCOUNT-SERVICE (8082)",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "31542330"
+  },
+  "item": [
+    {
+      "name": "CLIENT-SERVICE (8081)",
+      "item": [
+        {
+          "name": "POST - Create Client (Jose)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"clientId\": \"jose01\",\n  \"password\": \"1234\",\n  \"status\": true,\n  \"person\": {\n    \"name\": \"Jose Lema\",\n    \"gender\": \"Male\",\n    \"age\": 30,\n    \"identification\": \"0912345678\",\n    \"address\": \"Otavalo sn y principal\",\n    \"phone\": \"098254785\"\n  }\n}"
+            },
+            "url": {
+              "raw": "http://localhost:8081/clients",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8081",
+              "path": [
+                "clients"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "POST - Create Client (Mariana)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"clientId\": \"mariana01\",\n    \"password\": \"5678\",\n    \"status\": true,\n    \"person\": {\n        \"name\": \"Mariana Montalvo\",\n        \"gender\": \"Female\",\n        \"age\": 25,\n        \"identification\": \"1712345678\",\n        \"address\": \"Armenia y Rocafuerte\",\n        \"phone\": \"097548965\"\n    }\n}"
+            },
+            "url": {
+              "raw": "http://localhost:8081/clients",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8081",
+              "path": [
+                "clients"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "GET - All Clients",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8081/clients",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8081",
+              "path": [
+                "clients"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "GET - Client by ID (Jose)",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8081/clients/jose01",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8081",
+              "path": [
+                "clients",
+                "jose01"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "PUT - Update Client (Jose)",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"clientId\": \"jose01\",\n  \"password\": \"newpass123\",\n  \"status\": true,\n  \"person\": {\n    \"name\": \"Jose Lema Updated\",\n    \"gender\": \"Male\",\n    \"age\": 31,\n    \"identification\": \"0912345678\",\n    \"address\": \"Nueva direccion 123\",\n    \"phone\": \"098000000\"\n  }\n}"
+            },
+            "url": {
+              "raw": "http://localhost:8081/clients/jose01",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8081",
+              "path": [
+                "clients",
+                "jose01"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "DELETE - Client (jose01)",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8081/clients/jose01",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8081",
+              "path": [
+                "clients",
+                "jose01"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "ACCOUNT-SERVICE (8082)",
+      "item": [
+        {
+          "name": "POST - Create Account (478758)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"accountNumber\": \"478758\",\n    \"accountType\": \"Debit\",\n    \"initialBalance\": 1000.00,\n    \"status\": true,\n    \"clientId\": \"jose01\"\n  }"
+            },
+            "url": {
+              "raw": "http://localhost:8082/accounts",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8082",
+              "path": [
+                "accounts"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "PUT -  Update Account",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"accountNumber\": \"478758\",\n    \"accountType\": \"debit\",\n    \"initialBalance\": 100.00,\n    \"status\": true,\n    \"clientId\": \"jose01\"\n  }",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8082/accounts/478758",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8082",
+              "path": [
+                "accounts",
+                "478758"
+              ]
+            },
+            "description": "Generated from cURL: curl -X PUT http://localhost:8082/accounts/225487 \\\n  -H \"Content-Type: application/json\" \\\n  -d '{\n    \"accountNumber\": \"225487\",\n    \"accountType\": \"Savings\",\n    \"initialBalance\": 100.00,\n    \"status\": true,\n    \"clientId\": \"jose01\"\n  }'"
+          },
+          "response": []
+        },
+        {
+          "name": "PUT - Deactivate Account",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"accountNumber\": \"478758\",\n    \"accountType\": \"Savings\",\n    \"initialBalance\": 0.00,\n    \"status\": true,\n    \"clientId\": \"jose01\"\n  }",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8082/accounts/478758",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8082",
+              "path": [
+                "accounts",
+                "478758"
+              ]
+            },
+            "description": "Generated from cURL: curl -X PUT http://localhost:8082/accounts/495878 \\\n  -H \"Content-Type: application/json\" \\\n  -d '{\n    \"accountNumber\": \"495878\",\n    \"accountType\": \"Savings\",\n    \"initialBalance\": 0.00,\n    \"status\": false,\n    \"clientId\": \"mariana01\"\n  }'"
+          },
+          "response": []
+        },
+        {
+          "name": "POST - Movement Debit",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{ \"value\": 100.00 }"
+            },
+            "url": {
+              "raw": "http://localhost:8082/movements/478758",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8082",
+              "path": [
+                "movements",
+                "478758"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "GET - All Accounts",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8082/accounts?page=0&size=10",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8082",
+              "path": [
+                "accounts"
+              ],
+              "query": [
+                {
+                  "key": "page",
+                  "value": "0"
+                },
+                {
+                  "key": "size",
+                  "value": "10"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "GET - All Movements",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8082/movements?page=0&size=10",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8082",
+              "path": [
+                "movements"
+              ],
+              "query": [
+                {
+                  "key": "page",
+                  "value": "0"
+                },
+                {
+                  "key": "size",
+                  "value": "10"
+                }
+              ]
+            },
+            "description": "Generated from cURL: curl \"http://localhost:8082/movements?page=0&size=10\""
+          },
+          "response": []
+        },
+        {
+          "name": "GET - Reports (Jose)",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8082/reports?clientId=jose01&startDate=2024-01-01&endDate=2026-12-31",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8082",
+              "path": [
+                "reports"
+              ],
+              "query": [
+                {
+                  "key": "clientId",
+                  "value": "jose01"
+                },
+                {
+                  "key": "startDate",
+                  "value": "2024-01-01"
+                },
+                {
+                  "key": "endDate",
+                  "value": "2026-12-31"
+                }
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    }
+  ]
+}
