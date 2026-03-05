@@ -2,12 +2,12 @@
 -- PostgreSQL database dump
 --
 
-\restrict LQCkdqFvckSRvTake8CQXvGszR7fIQeSsOfg74JYPRhmBHygBrw9cojfpQaErgc
+\restrict WDI7I3vhhO7qKzpaJznYylSeJ4V54aPPAx1pHRs1IdCIhI4GcEFbnYtRdgE49cB
 
 -- Dumped from database version 18.3
 -- Dumped by pg_dump version 18.3
 
--- Started on 2026-03-02 15:45:51
+-- Started on 2026-03-03 12:16:05
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -21,20 +21,20 @@ SET xmloption = content;
 SET client_min_messages = warning;
 SET row_security = off;
 
-DROP DATABASE banco_clientes;
+DROP DATABASE client_service_db;
 --
--- TOC entry 5046 (class 1262 OID 16500)
--- Name: banco_clientes; Type: DATABASE; Schema: -; Owner: postgres
+-- TOC entry 5046 (class 1262 OID 16690)
+-- Name: client_service_db; Type: DATABASE; Schema: -; Owner: postgres
 --
 
-CREATE DATABASE banco_clientes WITH TEMPLATE = template0 ENCODING = 'UTF8' LOCALE_PROVIDER = libc LOCALE = 'Spanish_Colombia.1252';
+CREATE DATABASE client_service_db WITH TEMPLATE = template0 ENCODING = 'UTF8' LOCALE_PROVIDER = libc LOCALE = 'Spanish_Colombia.1252';
 
 
-ALTER DATABASE banco_clientes OWNER TO postgres;
+ALTER DATABASE client_service_db OWNER TO postgres;
 
-\unrestrict LQCkdqFvckSRvTake8CQXvGszR7fIQeSsOfg74JYPRhmBHygBrw9cojfpQaErgc
-\connect banco_clientes
-\restrict LQCkdqFvckSRvTake8CQXvGszR7fIQeSsOfg74JYPRhmBHygBrw9cojfpQaErgc
+\unrestrict WDI7I3vhhO7qKzpaJznYylSeJ4V54aPPAx1pHRs1IdCIhI4GcEFbnYtRdgE49cB
+\connect client_service_db
+\restrict WDI7I3vhhO7qKzpaJznYylSeJ4V54aPPAx1pHRs1IdCIhI4GcEFbnYtRdgE49cB
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -53,29 +53,29 @@ SET default_tablespace = '';
 SET default_table_access_method = heap;
 
 --
--- TOC entry 223 (class 1259 OID 16534)
--- Name: clientes; Type: TABLE; Schema: public; Owner: postgres
+-- TOC entry 223 (class 1259 OID 16724)
+-- Name: clients; Type: TABLE; Schema: public; Owner: postgres
 --
 
-CREATE TABLE public.clientes (
+CREATE TABLE public.clients (
     id bigint NOT NULL,
-    persona_id bigint NOT NULL,
-    cliente_id character varying(50) NOT NULL,
-    contrasena character varying(100) NOT NULL,
-    estado boolean DEFAULT true NOT NULL,
+    person_id bigint NOT NULL,
+    client_id character varying(50) NOT NULL,
+    password character varying(100) NOT NULL,
+    status boolean DEFAULT true NOT NULL,
     created_at timestamp without time zone DEFAULT now(),
     updated_at timestamp without time zone DEFAULT now()
 );
 
 
-ALTER TABLE public.clientes OWNER TO postgres;
+ALTER TABLE public.clients OWNER TO postgres;
 
 --
--- TOC entry 222 (class 1259 OID 16533)
--- Name: clientes_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+-- TOC entry 222 (class 1259 OID 16723)
+-- Name: clients_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
-CREATE SEQUENCE public.clientes_id_seq
+CREATE SEQUENCE public.clients_id_seq
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -83,19 +83,19 @@ CREATE SEQUENCE public.clientes_id_seq
     CACHE 1;
 
 
-ALTER SEQUENCE public.clientes_id_seq OWNER TO postgres;
+ALTER SEQUENCE public.clients_id_seq OWNER TO postgres;
 
 --
 -- TOC entry 5047 (class 0 OID 0)
 -- Dependencies: 222
--- Name: clientes_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+-- Name: clients_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
 
-ALTER SEQUENCE public.clientes_id_seq OWNED BY public.clientes.id;
+ALTER SEQUENCE public.clients_id_seq OWNED BY public.clients.id;
 
 
 --
--- TOC entry 219 (class 1259 OID 16502)
+-- TOC entry 219 (class 1259 OID 16692)
 -- Name: flyway_schema_history; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -116,31 +116,31 @@ CREATE TABLE public.flyway_schema_history (
 ALTER TABLE public.flyway_schema_history OWNER TO postgres;
 
 --
--- TOC entry 221 (class 1259 OID 16520)
--- Name: personas; Type: TABLE; Schema: public; Owner: postgres
+-- TOC entry 221 (class 1259 OID 16710)
+-- Name: persons; Type: TABLE; Schema: public; Owner: postgres
 --
 
-CREATE TABLE public.personas (
+CREATE TABLE public.persons (
     id bigint NOT NULL,
-    nombre character varying(100) NOT NULL,
-    genero character varying(20),
-    edad integer,
-    identificacion character varying(20) NOT NULL,
-    direccion character varying(200),
-    telefono character varying(20),
+    name character varying(100) NOT NULL,
+    gender character varying(20),
+    age integer,
+    identification character varying(20) NOT NULL,
+    address character varying(200),
+    phone character varying(20),
     created_at timestamp without time zone DEFAULT now(),
     updated_at timestamp without time zone DEFAULT now()
 );
 
 
-ALTER TABLE public.personas OWNER TO postgres;
+ALTER TABLE public.persons OWNER TO postgres;
 
 --
--- TOC entry 220 (class 1259 OID 16519)
--- Name: personas_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+-- TOC entry 220 (class 1259 OID 16709)
+-- Name: persons_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
-CREATE SEQUENCE public.personas_id_seq
+CREATE SEQUENCE public.persons_id_seq
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -148,102 +148,106 @@ CREATE SEQUENCE public.personas_id_seq
     CACHE 1;
 
 
-ALTER SEQUENCE public.personas_id_seq OWNER TO postgres;
+ALTER SEQUENCE public.persons_id_seq OWNER TO postgres;
 
 --
 -- TOC entry 5048 (class 0 OID 0)
 -- Dependencies: 220
--- Name: personas_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+-- Name: persons_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
 
-ALTER SEQUENCE public.personas_id_seq OWNED BY public.personas.id;
-
-
---
--- TOC entry 4869 (class 2604 OID 16537)
--- Name: clientes id; Type: DEFAULT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY public.clientes ALTER COLUMN id SET DEFAULT nextval('public.clientes_id_seq'::regclass);
+ALTER SEQUENCE public.persons_id_seq OWNED BY public.persons.id;
 
 
 --
--- TOC entry 4866 (class 2604 OID 16523)
--- Name: personas id; Type: DEFAULT; Schema: public; Owner: postgres
+-- TOC entry 4869 (class 2604 OID 16727)
+-- Name: clients id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY public.personas ALTER COLUMN id SET DEFAULT nextval('public.personas_id_seq'::regclass);
+ALTER TABLE ONLY public.clients ALTER COLUMN id SET DEFAULT nextval('public.clients_id_seq'::regclass);
 
 
 --
--- TOC entry 5040 (class 0 OID 16534)
+-- TOC entry 4866 (class 2604 OID 16713)
+-- Name: persons id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.persons ALTER COLUMN id SET DEFAULT nextval('public.persons_id_seq'::regclass);
+
+
+--
+-- TOC entry 5040 (class 0 OID 16724)
 -- Dependencies: 223
--- Data for Name: clientes; Type: TABLE DATA; Schema: public; Owner: postgres
+-- Data for Name: clients; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY public.clientes (id, persona_id, cliente_id, contrasena, estado, created_at, updated_at) FROM stdin;
+COPY public.clients (id, person_id, client_id, password, status, created_at, updated_at) FROM stdin;
+2	2	mariana01	5678	t	2026-03-03 11:10:12.202751	2026-03-03 11:10:12.202751
+1	1	jose01	newpass123	t	2026-03-03 11:10:06.28137	2026-03-03 11:10:28.631988
 \.
 
 
 --
--- TOC entry 5036 (class 0 OID 16502)
+-- TOC entry 5036 (class 0 OID 16692)
 -- Dependencies: 219
 -- Data for Name: flyway_schema_history; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
 COPY public.flyway_schema_history (installed_rank, version, description, type, script, checksum, installed_by, installed_on, execution_time, success) FROM stdin;
-1	1	create personas clientes	SQL	V1__create_personas_clientes.sql	1921836492	postgres	2026-03-02 15:44:36.439833	188	t
+1	1	create personas clientes	SQL	V1__create_personas_clientes.sql	-1620279183	postgres	2026-03-03 08:56:24.4639	72	t
 \.
 
 
 --
--- TOC entry 5038 (class 0 OID 16520)
+-- TOC entry 5038 (class 0 OID 16710)
 -- Dependencies: 221
--- Data for Name: personas; Type: TABLE DATA; Schema: public; Owner: postgres
+-- Data for Name: persons; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY public.personas (id, nombre, genero, edad, identificacion, direccion, telefono, created_at, updated_at) FROM stdin;
+COPY public.persons (id, name, gender, age, identification, address, phone, created_at, updated_at) FROM stdin;
+2	Mariana Montalvo	Female	25	1712345678	Armenia y Rocafuerte	097548965	2026-03-03 11:10:12.188992	2026-03-03 11:10:12.188992
+1	Jose Lema Updated	Male	31	0912345678	Nueva direccion 123	098000000	2026-03-03 11:10:06.147912	2026-03-03 11:10:28.60041
 \.
 
 
 --
 -- TOC entry 5049 (class 0 OID 0)
 -- Dependencies: 222
--- Name: clientes_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+-- Name: clients_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.clientes_id_seq', 1, false);
+SELECT pg_catalog.setval('public.clients_id_seq', 2, true);
 
 
 --
 -- TOC entry 5050 (class 0 OID 0)
 -- Dependencies: 220
--- Name: personas_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+-- Name: persons_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.personas_id_seq', 1, false);
-
-
---
--- TOC entry 4882 (class 2606 OID 16549)
--- Name: clientes clientes_cliente_id_key; Type: CONSTRAINT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY public.clientes
-    ADD CONSTRAINT clientes_cliente_id_key UNIQUE (cliente_id);
+SELECT pg_catalog.setval('public.persons_id_seq', 2, true);
 
 
 --
--- TOC entry 4884 (class 2606 OID 16547)
--- Name: clientes clientes_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+-- TOC entry 4882 (class 2606 OID 16739)
+-- Name: clients clients_client_id_key; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY public.clientes
-    ADD CONSTRAINT clientes_pkey PRIMARY KEY (id);
+ALTER TABLE ONLY public.clients
+    ADD CONSTRAINT clients_client_id_key UNIQUE (client_id);
 
 
 --
--- TOC entry 4874 (class 2606 OID 16517)
+-- TOC entry 4884 (class 2606 OID 16737)
+-- Name: clients clients_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.clients
+    ADD CONSTRAINT clients_pkey PRIMARY KEY (id);
+
+
+--
+-- TOC entry 4874 (class 2606 OID 16707)
 -- Name: flyway_schema_history flyway_schema_history_pk; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -252,25 +256,25 @@ ALTER TABLE ONLY public.flyway_schema_history
 
 
 --
--- TOC entry 4878 (class 2606 OID 16532)
--- Name: personas personas_identificacion_key; Type: CONSTRAINT; Schema: public; Owner: postgres
+-- TOC entry 4878 (class 2606 OID 16722)
+-- Name: persons persons_identification_key; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY public.personas
-    ADD CONSTRAINT personas_identificacion_key UNIQUE (identificacion);
-
-
---
--- TOC entry 4880 (class 2606 OID 16530)
--- Name: personas personas_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY public.personas
-    ADD CONSTRAINT personas_pkey PRIMARY KEY (id);
+ALTER TABLE ONLY public.persons
+    ADD CONSTRAINT persons_identification_key UNIQUE (identification);
 
 
 --
--- TOC entry 4875 (class 1259 OID 16518)
+-- TOC entry 4880 (class 2606 OID 16720)
+-- Name: persons persons_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.persons
+    ADD CONSTRAINT persons_pkey PRIMARY KEY (id);
+
+
+--
+-- TOC entry 4875 (class 1259 OID 16708)
 -- Name: flyway_schema_history_s_idx; Type: INDEX; Schema: public; Owner: postgres
 --
 
@@ -278,51 +282,51 @@ CREATE INDEX flyway_schema_history_s_idx ON public.flyway_schema_history USING b
 
 
 --
--- TOC entry 4885 (class 1259 OID 16556)
--- Name: idx_clientes_cliente_id; Type: INDEX; Schema: public; Owner: postgres
+-- TOC entry 4885 (class 1259 OID 16746)
+-- Name: idx_clients_client_id; Type: INDEX; Schema: public; Owner: postgres
 --
 
-CREATE UNIQUE INDEX idx_clientes_cliente_id ON public.clientes USING btree (cliente_id);
-
-
---
--- TOC entry 4886 (class 1259 OID 16558)
--- Name: idx_clientes_estado; Type: INDEX; Schema: public; Owner: postgres
---
-
-CREATE INDEX idx_clientes_estado ON public.clientes USING btree (estado);
+CREATE UNIQUE INDEX idx_clients_client_id ON public.clients USING btree (client_id);
 
 
 --
--- TOC entry 4887 (class 1259 OID 16557)
--- Name: idx_clientes_persona_id; Type: INDEX; Schema: public; Owner: postgres
+-- TOC entry 4886 (class 1259 OID 16747)
+-- Name: idx_clients_person_id; Type: INDEX; Schema: public; Owner: postgres
 --
 
-CREATE INDEX idx_clientes_persona_id ON public.clientes USING btree (persona_id);
-
-
---
--- TOC entry 4876 (class 1259 OID 16555)
--- Name: idx_personas_identificacion; Type: INDEX; Schema: public; Owner: postgres
---
-
-CREATE UNIQUE INDEX idx_personas_identificacion ON public.personas USING btree (identificacion);
+CREATE INDEX idx_clients_person_id ON public.clients USING btree (person_id);
 
 
 --
--- TOC entry 4888 (class 2606 OID 16550)
--- Name: clientes clientes_persona_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+-- TOC entry 4887 (class 1259 OID 16748)
+-- Name: idx_clients_status; Type: INDEX; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY public.clientes
-    ADD CONSTRAINT clientes_persona_id_fkey FOREIGN KEY (persona_id) REFERENCES public.personas(id) ON DELETE CASCADE;
+CREATE INDEX idx_clients_status ON public.clients USING btree (status);
 
 
--- Completed on 2026-03-02 15:45:53
+--
+-- TOC entry 4876 (class 1259 OID 16745)
+-- Name: idx_persons_identification; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE UNIQUE INDEX idx_persons_identification ON public.persons USING btree (identification);
+
+
+--
+-- TOC entry 4888 (class 2606 OID 16740)
+-- Name: clients clients_person_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.clients
+    ADD CONSTRAINT clients_person_id_fkey FOREIGN KEY (person_id) REFERENCES public.persons(id) ON DELETE CASCADE;
+
+
+-- Completed on 2026-03-03 12:16:06
 
 --
 -- PostgreSQL database dump complete
 --
 
-\unrestrict LQCkdqFvckSRvTake8CQXvGszR7fIQeSsOfg74JYPRhmBHygBrw9cojfpQaErgc
+\unrestrict WDI7I3vhhO7qKzpaJznYylSeJ4V54aPPAx1pHRs1IdCIhI4GcEFbnYtRdgE49cB
 

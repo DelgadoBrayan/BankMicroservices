@@ -5,6 +5,7 @@ import com.banco.cuenta_service.application.dtos.AccountResponse;
 import com.banco.cuenta_service.application.dtos.MovementRequest;
 import com.banco.cuenta_service.application.dtos.MovementResponse;
 import com.banco.cuenta_service.application.dtos.PageResponse;
+import com.banco.cuenta_service.domain.models.AccountType;
 import com.banco.cuenta_service.domain.models.MovementType;
 import com.banco.cuenta_service.infrastructure.repository.AccountRepository;
 import com.banco.cuenta_service.infrastructure.repository.MovementRepository;
@@ -104,7 +105,7 @@ class AccountMovementIntegrationTest {
 
         AccountRequest request = AccountRequest.builder()
                 .accountNumber(accountNumber)
-                .accountType("Savings")
+                .accountType(AccountType.SAVINGS)
                 .initialBalance(new BigDecimal(initialBalance))
                 .status(true)
                 .clientId(clientId)
@@ -127,7 +128,7 @@ class AccountMovementIntegrationTest {
 
         AccountRequest request = AccountRequest.builder()
                 .accountNumber("478758")
-                .accountType("Savings")
+                .accountType(AccountType.SAVINGS)
                 .initialBalance(new BigDecimal("2000.00"))
                 .status(true)
                 .clientId("jose01")
@@ -155,7 +156,7 @@ class AccountMovementIntegrationTest {
 
         AccountRequest request = AccountRequest.builder()
                 .accountNumber("478758")
-                .accountType("Savings")
+                .accountType(AccountType.CHECKING)
                 .initialBalance(new BigDecimal("2000.00"))
                 .status(true)
                 .clientId("jose01")
@@ -194,7 +195,7 @@ class AccountMovementIntegrationTest {
                 .expectStatus().isCreated()
                 .expectBody(MovementResponse.class)
                 .value(response -> {
-                    assertThat(response.getMovementType()).isEqualTo("CREDIT");
+                    assertThat(response.getMovementType()).isEqualTo(MovementType.DEPOSIT);
                     assertThat(response.getAmount()).isEqualByComparingTo("300.00");
                     assertThat(response.getBalance()).isEqualByComparingTo("800.00");
                 });
@@ -336,7 +337,7 @@ class AccountMovementIntegrationTest {
     @DisplayName("Should return 400 when account number is missing")
     void shouldReturn400WhenAccountNumberIsMissing() {
         AccountRequest invalidRequest = AccountRequest.builder()
-                .accountType("Savings")
+                .accountType(AccountType.CHECKING)
                 .initialBalance(new BigDecimal("1000.00"))
                 .status(true)
                 .clientId("jose01")
